@@ -3,138 +3,154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Muskan ❤️</title>
+<title>For My Muskan 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    color: white;
-    overflow: hidden;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
 }
 
-.container {
-    margin-top: 100px;
-    padding: 20px;
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff9a9e,#fecfef);
+overflow:hidden;
 }
 
-button {
-    padding: 12px 25px;
-    margin: 10px;
-    font-size: 18px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: 0.3s;
+.card{
+background:white;
+width:90%;
+max-width:400px;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
+position:relative;
+animation:fadeIn 1s ease;
 }
 
-.yes {
-    background-color: #ff2e63;
-    color: white;
+h1{
+color:#ff4d6d;
+margin-bottom:15px;
 }
 
-.no {
-    background-color: white;
-    color: #ff2e63;
-    position: absolute;
+p{
+color:#555;
+margin-bottom:20px;
 }
 
-.hidden {
-    display: none;
+button{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+font-size:16px;
+cursor:pointer;
+margin:5px;
+transition:0.3s;
 }
 
-.card {
-    margin-top: 40px;
-    font-size: 22px;
+.yes{
+background:#ff4d6d;
+color:white;
 }
 
-/* Heart Animation */
-.heart {
-    position: absolute;
-    color: #fff;
-    font-size: 20px;
-    animation: float 5s linear infinite;
+.yes:hover{
+transform:scale(1.1);
 }
 
-@keyframes float {
-    0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-800px) scale(1.5);
-        opacity: 0;
-    }
+.no{
+background:#eee;
+color:#ff4d6d;
+position:absolute;
+}
+
+.hidden{
+display:none;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:scale(0.9);}
+to{opacity:1; transform:scale(1);}
+}
+
+/* Floating Hearts */
+.heart{
+position:absolute;
+color:#ff4d6d;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0); opacity:1;}
+100%{transform:translateY(-800px); opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="page1">
-    <h1>A Small World Made Only For Muskan 💖</h1>
-    <p>Are you ready to enter Raunak's heart forever?</p>
-    <button class="yes" onclick="showLove()">YES ❤️</button>
-    <button class="no" onmouseover="moveButton()">NO 😜</button>
+<div class="card" id="page1">
+<h1>Hey Muskan 💖</h1>
+<p>I made something special for you...</p>
+<button class="yes" onclick="nextPage('page1','page2')">Open It 😌</button>
 </div>
 
-<div class="container hidden" id="page2">
-    <h1>Quiz For You Muskan 😌</h1>
-    <p>Who loves you the most?</p>
-    <button class="yes" onclick="showFinal()">Raunak</button>
-    <button class="yes" onclick="showFinal()">Definitely Raunak</button>
+<div class="card hidden" id="page2">
+<h1>Are You Sure? 🥺</h1>
+<p>Once you enter, you belong to Raunak forever ❤️</p>
+<button class="yes" onclick="nextPage('page2','quiz')">YES 💕</button>
+<button class="no" onmouseover="moveButton()">NO 🙈</button>
 </div>
 
-<div class="container hidden" id="finalPage">
-    <h1>My Message For You Muskan 💌</h1>
-    <div class="card">
-        I may fight with you,<br>
-        I may get jealous,<br><br>
-        But at the end of every mood swing,<br>
-        I only want you.<br><br>
-        Forever yours,<br>
-        <b>Raunak ❤️</b>
-    </div>
+<div class="card hidden" id="quiz">
+<h1>Mini Quiz 😏</h1>
+<p>Who annoys you the most?</p>
+<button class="yes" onclick="nextPage('quiz','final')">Raunak</button>
+<button class="yes" onclick="nextPage('quiz','final')">Only Raunak</button>
+</div>
+
+<div class="card hidden" id="final">
+<h1>For You Muskan 💌</h1>
+<p>
+I may fight with you,<br>
+I may act childish,<br><br>
+But the truth is...<br>
+You are my favorite person in this world.<br><br>
+Forever Yours,<br>
+<b>Raunak ❤️</b>
+</p>
 </div>
 
 <script>
-function moveButton() {
-    var button = document.querySelector('.no');
-    var x = Math.random() * (window.innerWidth - 100);
-    var y = Math.random() * (window.innerHeight - 50);
-    button.style.left = x + "px";
-    button.style.top = y + "px";
+function nextPage(current,next){
+document.getElementById(current).classList.add("hidden");
+document.getElementById(next).classList.remove("hidden");
 }
 
-function showLove() {
-    document.getElementById("page1").classList.add("hidden");
-    document.getElementById("page2").classList.remove("hidden");
+function moveButton(){
+var btn=document.querySelector('.no');
+btn.style.top=Math.random()*200+"px";
+btn.style.left=Math.random()*200+"px";
 }
 
-function showFinal() {
-    document.getElementById("page2").classList.add("hidden");
-    document.getElementById("finalPage").classList.remove("hidden");
+/* Floating hearts */
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+15)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},5000);
 }
-
-/* Generate Floating Hearts */
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}
-
-setInterval(createHeart, 300);
+setInterval(createHeart,400);
 </script>
 
 </body>
