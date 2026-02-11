@@ -3,139 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Queen Muskan ❤️</title>
+    <title>For My Favorite Person ❤️</title>
     <style>
-        :root {
-            --primary-pink: #ff4d6d;
-            --soft-pink: #ffeef2;
-        }
-        body {
-            background-color: var(--soft-pink);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            border: 2px solid #ffccd5;
-            z-index: 10;
-        }
-        h1 { color: var(--primary-pink); font-size: 1.8em; margin-bottom: 10px; }
-        .sub-text { color: #666; font-style: italic; margin-bottom: 20px; }
-        .gif { width: 160px; border-radius: 15px; margin-bottom: 20px; }
-        
-        .message-box {
-            background: #fff5f7;
-            padding: 15px;
-            border-radius: 15px;
-            margin: 20px 0;
-            font-size: 0.95em;
-            color: #444;
-            line-height: 1.5;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        button {
-            padding: 12px 30px;
-            font-size: 1.1em;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-        #yesBtn { background: var(--primary-pink); color: white; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4); }
-        #noBtn { background: #eee; color: #777; position: relative; }
+        :root { --pink: #ff4d6d; --dark-pink: #c9184a; --bg: #fff0f3; }
+        body { background: var(--bg); font-family: 'Poppins', sans-serif; overflow-x: hidden; margin: 0; }
         
+        .screen { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
         .hidden { display: none; }
-        .celebration-text { font-size: 1.4em; color: var(--primary-pink); font-weight: bold; }
         
-        /* Floating hearts animation */
-        .heart {
-            position: fixed;
-            top: 100vh;
-            font-size: 20px;
-            user-select: none;
-            z-index: 1;
-            animation: moveUp 4s linear forwards;
-        }
-        @keyframes moveUp {
-            to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-        }
+        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 400px; width: 100%; border: 2px solid var(--pink); animation: fadeIn 0.5s; }
+        
+        h1 { font-family: 'Dancing Script', cursive; color: var(--pink); font-size: 2.5rem; }
+        .btn { background: var(--pink); color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-size: 1rem; margin: 10px; transition: 0.3s; font-weight: 600; }
+        .btn:hover { background: var(--dark-pink); transform: scale(1.05); }
+
+        /* Quiz Styles */
+        .option-btn { background: white; border: 2px solid var(--pink); color: var(--pink); display: block; width: 100%; margin: 10px 0; border-radius: 10px; padding: 10px; cursor: pointer; }
+        .option-btn.wrong:active { background: #ffccd5; }
+
+        /* Letter Style */
+        .letter { font-family: 'Dancing Script', cursive; font-size: 1.5rem; line-height: 1.4; color: #444; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .heart-float { position: fixed; color: var(--pink); pointer-events: none; z-index: 100; animation: floatUp 3s linear forwards; }
+        @keyframes floatUp { to { transform: translateY(-100vh) translateX(20px); opacity: 0; } }
     </style>
 </head>
 <body>
 
-    <div class="container" id="quizCard">
-        <h1>Hi Muskan! ❤️</h1>
-        <p class="sub-text">Mohit has a special question for you...</p>
-        
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpndW1uNHR3bmI2bmh4bnR4ZzRndzhicGtxZ3R3bmh4bnR4ZzRndyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Lp71UqhxDgqW2z5GSW/giphy.gif" class="gif">
-
-        <div class="message-box">
-            "Tum meri life ki sabse khoobsurat insaan ho. Kya tum hamesha mere saath rahogi?"
-        </div>
-
-        <h2 style="font-size: 1.1em; color: #333;">Will you be my Valentine? 🥺</h2>
-        
-        <div class="buttons">
-            <button id="yesBtn" onclick="showLove()">YES! 💖</button>
-            <button id="noBtn" onmouseover="runAway()">No ❌</button>
+    <div id="stage1" class="screen">
+        <div class="card">
+            <h1>Hi Muskan! ✨</h1>
+            <p>Mohit has locked a special surprise for you. You need to pass the "Love Quiz" to unlock it!</p>
+            <button class="btn" onclick="nextStage(1, 2)">I'm Ready! 🚀</button>
         </div>
     </div>
 
-    <div class="container hidden" id="loveCard">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpndW1uNHR3bmI2bmh4bnR4ZzRndzhicGtxZ3R3bmh4bnR4ZzRndyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/vG7x8R1k5F5O6PjL0Z/giphy.gif" class="gif">
-        <div class="celebration-text">
-            I knew it! 🥰 <br><br>
-            I Love You, Muskan! <br>
-            <span style="font-size: 0.8em; color: #666;">- Yours, Mohit</span>
+    <div id="stage2" class="screen hidden">
+        <div class="card">
+            <h2 style="color: var(--pink)">Question 1</h2>
+            <p>Who is the most nakchadi/dramebaaz in this relationship? 😂</p>
+            <button class="option-btn" onclick="alert('Liar! Try again 😜')">Mohit</button>
+            <button class="option-btn" onclick="nextStage(2, 3)">Obviously Muskan ❤️</button>
         </div>
+    </div>
+
+    <div id="stage3" class="screen hidden">
+        <div class="card">
+            <h2 style="color: var(--pink)">Question 2</h2>
+            <p>Who loves whom more?</p>
+            <button class="option-btn" onclick="nextStage(3, 4)">Mohit loves Muskan more infinity!</button>
+            <button class="option-btn" onclick="alert('Error 404: Mohit ki mohabbat zyada hai! Re-select! 😤')">Muskan loves Mohit more</button>
+        </div>
+    </div>
+
+    <div id="stage4" class="screen hidden">
+        <div class="card">
+            <h1>A Note for You... 📝</h1>
+            <div class="letter">
+                "Dearest Muskan, <br>
+                Har din tumhare saath ek naya adventure hota hai. Ye choti si site bas ye batane ke liye hai ki tum mere liye kitni special ho..."
+            </div>
+            <button class="btn" onclick="nextStage(4, 5)">One Last Thing? 🥺</button>
+        </div>
+    </div>
+
+    <div id="stage5" class="screen hidden">
+        <div class="card" id="finalCard">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpndW1uNHR3bmI2bmh4bnR4ZzRndzhicGtxZ3R3bmh4bnR4ZzRndyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Lp71UqhxDgqW2z5GSW/giphy.gif" style="width:150px">
+            <h1>Muskan, Will you be my Valentine?</h1>
+            <div style="display:flex; justify-content: center;">
+                <button class="btn" id="yesBtn" onclick="celebrate()">YES! 💍</button>
+                <button class="btn" id="noBtn" onmouseover="moveNo()">No</button>
+            </div>
+        </div>
+        <h1 id="yay" class="hidden" style="font-size: 4rem;">YAYYY! ❤️👑</h1>
     </div>
 
     <script>
-        // "No" button ko bhagane wala logic
-        function runAway() {
+        function nextStage(current, next) {
+            document.getElementById('stage' + current).classList.add('hidden');
+            document.getElementById('stage' + next).classList.remove('hidden');
+        }
+
+        function moveNo() {
             const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
             btn.style.position = 'fixed';
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+            btn.style.left = Math.random() * 80 + 'vw';
+            btn.style.top = Math.random() * 80 + 'vh';
         }
 
-        // "Yes" click hone par celebration logic
-        function showLove() {
-            document.getElementById('quizCard').classList.add('hidden');
-            document.getElementById('loveCard').classList.remove('hidden');
-            setInterval(createHeart, 200);
+        function celebrate() {
+            document.getElementById('finalCard').innerHTML = "<h1>Infinite Love Unlocked! 🥰</h1><p>Check your WhatsApp, Mohit is waiting for a treat!</p>";
+            setInterval(createHeart, 150);
         }
 
-        // Falling/Rising Hearts animation
         function createHeart() {
             const heart = document.createElement('div');
-            heart.classList.add('heart');
             heart.innerHTML = '❤️';
+            heart.classList.add('heart-float');
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
             document.body.appendChild(heart);
-            
-            setTimeout(() => { heart.remove(); }, 4000);
+            setTimeout(() => heart.remove(), 3000);
         }
     </script>
 </body>
